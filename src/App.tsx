@@ -9,6 +9,7 @@ import {
 } from 'react-relay/hooks';
 import RelayEnvironment from './RelayEnvironment';
 import { AppRepositoryNameQuery } from './__generated__/AppRepositoryNameQuery.graphql';
+import { Button } from 'antd';
 
 const { Suspense } = React;
 
@@ -47,6 +48,7 @@ function App(props: AppProps) {
         <div className="App">
             <header className="App-header">
                 <p>{data.repository?.name}</p>
+                <Button type="primary">Button</Button>
             </header>
         </div>
     );
