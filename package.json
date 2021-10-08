@@ -12,9 +12,11 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "antd": "^4.16.13",
+    "craco-antd": "^1.19.0",
     "craco-less": "^1.20.0",
     "eslint-config-react-app": "^6.0.0",
     "node-sass": "^6.0.1",
+    "nodemon": "^2.0.13",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-relay": "^12.0.0",
@@ -24,7 +26,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "yarn run relay && react-scripts start",
+    "start": "nodemon -w craco.config.js -w ./src/antd.customize.scss --exec \"node ./src/scss-to-less && craco start\"",
     "build": "yarn run relay && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -55,6 +57,7 @@
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "@yarnpkg/sdks": "^2.4.2-rc.8",
+    "babel-plugin-import": "^1.13.3",
     "babel-plugin-relay": "^12.0.0",
     "graphql": "^15.6.1",
     "husky": "^7.0.2",
