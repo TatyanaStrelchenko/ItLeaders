@@ -42,8 +42,6 @@ function App(props: AppProps) {
       <header className="App-header">
         <p>{data.repository?.name}</p>
         <Button type="primary">Button</Button>
-        test
-        <h1></h1>
       </header>
     </div>
   )
