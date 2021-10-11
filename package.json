@@ -31,7 +31,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prettier": "prettier --write src",
-    "relay": "yarn run relay-compiler"
+    "relay": "yarn run relay-compiler",
+    "postinstall": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -60,17 +61,12 @@
     "babel-plugin-import": "^1.13.3",
     "babel-plugin-relay": "^12.0.0",
     "graphql": "^15.6.1",
-    "husky": "^7.0.2",
+    "husky": "^7.0.0",
     "prettier": "^2.4.1",
     "relay-compiler": "^12.0.0",
     "relay-compiler-language-typescript": "^14.2.0",
     "relay-config": "^12.0.0",
     "typescript-eslint": "^0.0.1-alpha.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,css,md}": [
