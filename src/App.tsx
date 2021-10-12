@@ -19,9 +19,7 @@ const RepositoryNameQuery = graphql`
   query AppRepositoryNameQuery {
     repository(owner: "facebook", name: "relay") {
       name
-      owner {
-        id
-      }
+      createdAt
     }
   }
 `
