@@ -1,0 +1,32 @@
+{
+  "extends": [
+    "react-app",
+    "airbnb",
+    "airbnb-typescript",
+    "prettier"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+
+  "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "mjs": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "object-curly-newline": "off",
+    "prefer-destructuring": "off",
+    "react/destructuring-assignment": "off",
+    "react/no-multi-comp": [ "error", { "ignoreStateless": true }],
+    "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }],
+    "import/prefer-default-export": "off",
+    "react/sort-comp": "error"
+  }
+}

@@ -1,18 +1,18 @@
-import React from 'react'
-import './App.css'
-import graphql from 'babel-plugin-relay/macro'
+import React from 'react';
+import './App.css';
+import graphql from 'babel-plugin-relay/macro';
+import { Button } from 'antd';
 
 import {
   RelayEnvironmentProvider,
   loadQuery,
   usePreloadedQuery,
   PreloadedQuery,
-} from 'react-relay/hooks'
-import RelayEnvironment from './RelayEnvironment'
-import { AppRepositoryNameQuery } from './__generated__/AppRepositoryNameQuery.graphql'
-import { Button } from 'antd'
+} from 'react-relay/hooks';
+import RelayEnvironment from './RelayEnvironment';
+import { AppRepositoryNameQuery } from './__generated__/AppRepositoryNameQuery.graphql';
 
-const { Suspense } = React
+const { Suspense } = React;
 
 // Define a query
 const RepositoryNameQuery = graphql`
@@ -25,18 +25,18 @@ const RepositoryNameQuery = graphql`
       createdAt
     }
   }
-`
+`;
 
 const preloadedQuery = loadQuery<AppRepositoryNameQuery>(RelayEnvironment, RepositoryNameQuery, {
   /* query variables */
-})
+});
 
 interface AppProps {
-  preloadedQuery: PreloadedQuery<AppRepositoryNameQuery>
+  preloadedQuery: PreloadedQuery<AppRepositoryNameQuery>;
 }
 
 function App(props: AppProps) {
-  const data = usePreloadedQuery(RepositoryNameQuery, props.preloadedQuery)
+  const data = usePreloadedQuery(RepositoryNameQuery, props.preloadedQuery);
 
   return (
     <div className="App">
@@ -44,10 +44,11 @@ function App(props: AppProps) {
         <p>{data.repository?.name}</p>
         <Button type="primary">Button</Button>
         test
-        <h1>yyy</h1>
+        <h1>Test</h1>
+        <h2>test2</h2>
       </header>
     </div>
-  )
+  );
 }
 
 // The above component needs to know how to access the Relay environment, and we
@@ -58,11 +59,11 @@ function App(props: AppProps) {
 function AppRoot() {
   return (
     <RelayEnvironmentProvider environment={RelayEnvironment}>
-      <Suspense fallback={'Loading...'}>
+      <Suspense fallback="Loading...">
         <App preloadedQuery={preloadedQuery} />
       </Suspense>
     </RelayEnvironmentProvider>
-  )
+  );
 }
 
-export default AppRoot
+export default AppRoot;
