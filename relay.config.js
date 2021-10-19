@@ -5,4 +5,4 @@ module.exports = {
   src: './src/',
   watch: true,
   language: 'typescript',
-}
+};

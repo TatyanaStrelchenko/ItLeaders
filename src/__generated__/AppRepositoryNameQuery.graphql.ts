@@ -2,18 +2,18 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from 'relay-runtime'
+import { ConcreteRequest } from 'relay-runtime';
 
-export type AppRepositoryNameQueryVariables = {}
+export type AppRepositoryNameQueryVariables = {};
 export type AppRepositoryNameQueryResponse = {
   readonly repository: {
-    readonly name: string
-  } | null
-}
+    readonly name: string;
+  } | null;
+};
 export type AppRepositoryNameQuery = {
-  readonly response: AppRepositoryNameQueryResponse
-  readonly variables: AppRepositoryNameQueryVariables
-}
+  readonly response: AppRepositoryNameQueryResponse;
+  readonly variables: AppRepositoryNameQueryVariables;
+};
 
 /*
 query AppRepositoryNameQuery {
@@ -43,7 +43,7 @@ const node: ConcreteRequest = (function () {
       kind: 'ScalarField',
       name: 'name',
       storageKey: null,
-    }
+    };
   return {
     fragment: {
       argumentDefinitions: [],
@@ -100,7 +100,7 @@ const node: ConcreteRequest = (function () {
       operationKind: 'query',
       text: 'query AppRepositoryNameQuery {\n  repository(owner: "facebook", name: "relay") {\n    name\n    id\n  }\n}\n',
     },
-  }
-})()
-;(node as any).hash = '9f041295559a43de4cee97435d379fd0'
-export default node
+  };
+})();
+(node as any).hash = '9f041295559a43de4cee97435d379fd0';
+export default node;

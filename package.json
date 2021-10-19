@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^2.0.4",
     "@types/react-relay": "^11.0.2",
     "@types/relay-runtime": "^12.0.0",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
@@ -66,6 +67,7 @@
     "husky": "^7.0.0",
     "nodemon": "^2.0.13",
     "prettier": "^2.4.1",
+    "prettier-plugin-import-sort": "^0.0.7",
     "relay-compiler": "^12.0.0",
     "relay-compiler-language-typescript": "^14.2.0",
     "relay-config": "^12.0.0",
@@ -74,9 +76,9 @@
   "lint-staged": {
     "*.{js,css,md,ts,tsx,json}": "prettier --write"
   },
-  "prettier": {
-    "plugins": [
-      "prettier-plugin-sorted"
-    ]
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "style": "module"
+    }
   }
 }

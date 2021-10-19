@@ -3,5 +3,7 @@
   "singleQuote": true,
   "printWidth": 100,
   "trailingComma": "all",
-  "jsxBracketSameLine": true
+  "jsxBracketSameLine": true,
+  "importOrder": ["^@core/(.*)$", "^@ui/(.*)$", "^@server/(.*)$",  "^[./]"],
+  "importOrderSeparation": true
 }

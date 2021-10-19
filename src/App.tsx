@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import graphql from 'babel-plugin-relay/macro';
 import { Button } from 'antd';
+import graphql from 'babel-plugin-relay/macro';
 
 import {
+  usePreloadedQuery,
   RelayEnvironmentProvider,
   loadQuery,
-  usePreloadedQuery,
   PreloadedQuery,
 } from 'react-relay/hooks';
 import RelayEnvironment from './RelayEnvironment';
