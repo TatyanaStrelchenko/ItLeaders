@@ -4,6 +4,12 @@
   "printWidth": 100,
   "trailingComma": "all",
   "jsxBracketSameLine": true,
-  "importOrder": ["^@core/(.*)$", "^@ui/(.*)$", "^@server/(.*)$",  "^[./]"],
-  "importOrderSeparation": true
+  "importOrder": [
+    "^(?:_|clsx|fs|lodash/?.*|path)$",
+    "^@?[\\w\\-]+",
+    "^./[\\w\\-]+$",
+    "__generated__",
+    ".json$",
+    ".s?css$"
+  ],  "importOrderSeparation": true
 }

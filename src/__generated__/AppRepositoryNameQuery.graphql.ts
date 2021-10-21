@@ -6,8 +6,11 @@ import { ConcreteRequest } from 'relay-runtime';
 
 export type AppRepositoryNameQueryVariables = {};
 export type AppRepositoryNameQueryResponse = {
-  readonly repository: {
+  readonly user: {
     readonly name: string;
+    readonly sponsors: {
+      readonly totalCount: number;
+    };
   } | null;
 };
 export type AppRepositoryNameQuery = {

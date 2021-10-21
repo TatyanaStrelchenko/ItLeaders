@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
 import { Button } from 'antd';
 import graphql from 'babel-plugin-relay/macro';
+import './App.css';
 
 import {
   usePreloadedQuery,
@@ -11,18 +11,17 @@ import {
 } from 'react-relay/hooks';
 import RelayEnvironment from './RelayEnvironment';
 import { AppRepositoryNameQuery } from './__generated__/AppRepositoryNameQuery.graphql';
+import { Sponsors } from './components/Sponsors';
 
 const { Suspense } = React;
 
 // Define a query
 const RepositoryNameQuery = graphql`
   query AppRepositoryNameQuery {
-    repository(owner: "facebook", name: "relay") {
-      name
-      owner {
-        id
+    user(login: "M0nica") {
+      sponsors {
+        totalCount
       }
-      createdAt
     }
   }
 `;
@@ -36,16 +35,18 @@ interface AppProps {
 }
 
 function App(props: AppProps) {
-  const data = usePreloadedQuery(RepositoryNameQuery, props.preloadedQuery);
+  const { user } = usePreloadedQuery(RepositoryNameQuery, props.preloadedQuery);
 
   return (
     <div className="App">
       <header className="App-header">
-        <p>{data.repository?.name}</p>
+        {console.log('user', user)}
+        <p>{user?.sponsors.totalCount} sponsors</p>
         <Button type="primary">Button</Button>
-        test
-        <h1>Test</h1>
-        <h2>test2</h2>
+        <a href="/" className="App-link">
+          Learn React
+        </a>
+        <Sponsors />
       </header>
     </div>
   );

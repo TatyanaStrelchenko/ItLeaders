@@ -23,6 +23,7 @@
     "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }],
     "import/prefer-default-export": "off",
     "import/order": "error",
-    "react/sort-comp": "error"
+    "react/sort-comp": "error",
+    "spaced-comment":"off"
   }
 }
