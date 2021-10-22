@@ -17,6 +17,7 @@
     "jsx": "react-jsx"
   },
   "include": ["src"],
+  "baseUrl": "./src/",
   "importSort": {
     ".js, .jsx, .ts, .tsx": {
       "style": "module",

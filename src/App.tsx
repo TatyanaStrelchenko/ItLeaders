@@ -11,7 +11,7 @@ import {
 } from 'react-relay/hooks';
 import RelayEnvironment from './RelayEnvironment';
 import { AppRepositoryNameQuery } from './__generated__/AppRepositoryNameQuery.graphql';
-import { Sponsors } from './components/Sponsors';
+import Sponsors from './components/Sponsors';
 
 const { Suspense } = React;
 
