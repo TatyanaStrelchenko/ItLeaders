@@ -1,21 +1,20 @@
-import React from 'react';
-import Avatar from 'antd/lib/avatar';
-import { Col, Row } from 'antd';
-import graphql from 'babel-plugin-relay/macro';
+import RelayEnvironment from '../../RelayEnvironment';
 
+import { Col, Row } from 'antd';
+import Avatar from 'antd/lib/avatar';
+import graphql from 'babel-plugin-relay/macro';
+import React, { Suspense } from 'react';
 import {
   loadQuery,
   PreloadedQuery,
   RelayEnvironmentProvider,
+  useLazyLoadQuery,
   usePreloadedQuery,
 } from 'react-relay/hooks';
+
 import { AppRepositoryNameQuery } from '../../__generated__/AppRepositoryNameQuery.graphql';
 
-import RelayEnvironment from '../../RelayEnvironment';
-
 import styles from './Sponsors.module.scss';
-
-const { Suspense } = React;
 
 const RepositoryNameQuery = graphql`
   query SponsorsQuery {
@@ -27,14 +26,14 @@ const RepositoryNameQuery = graphql`
   }
 `;
 
-const preloadedQuery = loadQuery<AppRepositoryNameQuery>(RelayEnvironment, RepositoryNameQuery, {});
+// const preloadedQuery = loadQuery<AppRepositoryNameQuery>(RelayEnvironment, RepositoryNameQuery, {});
 
-interface SponsorsProps {
+type SponsorsProps = {
   preloadedQuery: PreloadedQuery<AppRepositoryNameQuery>;
-}
+};
 
-const Sponsors2 = (props: SponsorsProps) => {
-  const { user } = usePreloadedQuery(RepositoryNameQuery, props.preloadedQuery);
+const Sponsors = () => {
+  const { user } = useLazyLoadQuery(RepositoryNameQuery, {});
 
   return (
     <section>
@@ -44,20 +43,6 @@ const Sponsors2 = (props: SponsorsProps) => {
           <Avatar src="https://joeschmoe.io/api/v1/random" />
           <div className={styles.popup}>
             <div className="holder">
-              <Row>
-                <Col span={12}>
-                  <Avatar src="https://joeschmoe.io/api/v1/random" />
-                </Col>
-                <Col span={12}>
-                  <div className={styles.info}>
-                    <h2 className={styles.title}>
-                      Frederik Ring <span>m90</span>
-                    </h2>
-                    <p className={styles.description}>Repeatedly refreshing websites</p>
-                    <address className={styles.location}>Repeatedly refreshing websites</address>
-                  </div>
-                </Col>
-              </Row>
               <div className={styles.memberInfo}>member</div>
             </div>
           </div>
@@ -67,15 +52,5 @@ const Sponsors2 = (props: SponsorsProps) => {
     </section>
   );
 };
-
-function Sponsors() {
-  return (
-    <RelayEnvironmentProvider environment={RelayEnvironment}>
-      <Suspense fallback="Loading...">
-        <Sponsors2 preloadedQuery={preloadedQuery} />
-      </Suspense>
-    </RelayEnvironmentProvider>
-  );
-}
 
 export default Sponsors;
