@@ -47,8 +47,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 # Airbnb React/JSX Style Guide
 
-[https://github.com/airbnb/javascript/tree/master/react] 
-(https://github.com/airbnb/javascript/tree/master/react)
+https://github.com/airbnb/javascript/tree/master/react
 
 This style guide is mostly based on the standards that are currently prevalent in JavaScript, although some conventions (i.e async/await or static class fields) may still be included or prohibited on a case-by-case basis. Currently, anything prior to stage 3 is not included nor recommended in this guide.
 
@@ -76,15 +75,17 @@ Extensions: Use .jsx extension for React components. eslint: react/jsx-filename-
 
 Filename: Use PascalCase for filenames. E.g., ReservationCard.jsx.
 
-Reference Naming: Use PascalCase for React components and camelCase for their instances. eslint: react/jsx-pascal-case
+Reference Naming: 
+Use PascalCase for React components and camelCase for their instances. eslint: react/jsx-pascal-case
 
-Higher-order Component Naming: Use a composite of the higher-order component’s name and the passed-in component’s name as the displayName on the generated component. For example, the higher-order component withFoo(), when passed a component Bar should produce a component with a displayName of withFoo(Bar).
+Higher-order Component Naming: 
+Use a composite of the higher-order component’s name and the passed-in component’s name as the displayName on the generated component. For example, the higher-order component withFoo(), when passed a component Bar should produce a component with a displayName of withFoo(Bar).
 
-Why? A component’s displayName may be used by developer tools or in error messages, and having a value that clearly expresses this relationship helps people understand what is happening.
+### `Why? A component’s displayName may be used by developer tools or in error messages, and having a value that clearly expresses this relationship helps people understand what is happening.`
 
 Props Naming: Avoid using DOM component prop names for different purposes.
 
-Why? People expect props like style and className to mean one specific thing. Varying this API for a subset of your app makes the code less readable and less maintainable, and may cause bugs.
+### `Why? People expect props like style and className to mean one specific thing. Varying this API for a subset of your app makes the code less readable and less maintainable, and may cause bugs.`
 
 ## Declaration
 
@@ -104,514 +105,126 @@ export default class ReservationCard extends React.Component {
 
 Follow these alignment styles for JSX syntax. eslint: react/jsx-closing-bracket-location react/jsx-closing-tag-location
 
-// bad
-<Foo superLongParam="bar"
-     anotherSuperLongParam="baz" />
-
-// good
-<Foo
-  superLongParam="bar"
-  anotherSuperLongParam="baz"
-/>
-
-// if props fit in one line then keep it on the same line
-<Foo bar="bar" />
-
-// children get indented normally
-<Foo
-superLongParam="bar"
-anotherSuperLongParam="baz"
-
->   <Quux />
-> </Foo>
-
-// bad
-{showButton &&
-<Button />
-}
-
-// bad
-{
-showButton &&
-<Button />
-}
-
-// good
-{showButton && (
-<Button />
-)}
-
-// good
-{showButton && <Button />}
-
-// good
-{someReallyLongConditional
-&& anotherLongConditional
-&& (
-<Foo
-      superLongParam="bar"
-      anotherSuperLongParam="baz"
-    />
-)
-}
-
-// good
-{someConditional ? (
-<Foo />
-) : (
-<Foo
-    superLongParam="bar"
-    anotherSuperLongParam="baz"
-  />
-)}
-
 ## Quotes
 
 Always use double quotes (") for JSX attributes, but single quotes (') for all other JS. eslint: jsx-quotes
 
-Why? Regular HTML attributes also typically use double quotes instead of single, so JSX attributes mirror this convention.
-
-// bad
-<Foo bar='bar' />
-
-// good
-<Foo bar="bar" />
-
-// bad
-<Foo style={{ left: "20px" }} />
-
-// good
-<Foo style={{ left: '20px' }} />
+### `Why? Regular HTML attributes also typically use double quotes instead of single, so JSX attributes mirror this convention.`
 
 ## Spacing
 
 Always include a single space in your self-closing tag. eslint: no-multi-spaces, react/jsx-tag-spacing
 
-// bad
-<Foo/>
-
-// very bad
-<Foo                 />
-
-// bad
-<Foo
- />
-
-// good
-<Foo />
-Do not pad JSX curly braces with spaces. eslint: react/jsx-curly-spacing
-
-// bad
-<Foo bar={ baz } />
-
-// good
-<Foo bar={baz} />
-
 ## Props
 
 Always use camelCase for prop names, or PascalCase if the prop value is a React component.
 
-// bad
-<Foo
-  UserName="hello"
-  phone_number={12345678}
-/>
-
-// good
-<Foo
-  userName="hello"
-  phoneNumber={12345678}
-  Component={SomeComponent}
-/>
-
 Omit the value of the prop when it is explicitly true. eslint: react/jsx-boolean-value
-
-// bad
-<Foo
-  hidden={true}
-/>
-
-// good
-<Foo
-  hidden
-/>
-
-// good
-<Foo hidden />
 
 Always include an alt prop on <img> tags. If the image is presentational, alt can be an empty string or the <img> must have role="presentation". eslint: jsx-a11y/alt-text
 
-// bad
-<img src="hello.jpg" />
-
-// good
-<img src="hello.jpg" alt="Me waving hello" />
-
-// good
-<img src="hello.jpg" alt="" />
-
-// good
-<img src="hello.jpg" role="presentation" />
-
 Do not use words like "image", "photo", or "picture" in <img> alt props. eslint: jsx-a11y/img-redundant-alt
 
-Why? Screenreaders already announce img elements as images, so there is no need to include this information in the alt text.
+### `Why? Screenreaders already announce img elements as images, so there is no need to include this information in the alt text.`
 
-// bad
-<img src="hello.jpg" alt="Picture of me waving hello" />
-
-// good
-<img src="hello.jpg" alt="Me waving hello" />
-Use only valid, non-abstract ARIA roles. eslint: jsx-a11y/aria-role
-
-// bad - not an ARIA role
-
-<div role="datepicker" />
-
-// bad - abstract ARIA role
-
-<div role="range" />
-
-// good
-
-<div role="button" />
 Do not use accessKey on elements. eslint: jsx-a11y/no-access-key
 
-Why? Inconsistencies between keyboard shortcuts and keyboard commands used by people using screenreaders and keyboards complicate accessibility.
+### `Why? Inconsistencies between keyboard shortcuts and keyboard commands used by people using screenreaders and keyboards complicate accessibility.`
 
-// bad
-
-<div accessKey="h" />
-
-// good
-
-<div />
 Avoid using an array index as key prop, prefer a stable ID. eslint: react/no-array-index-key
-Why? Not using a stable ID is an anti-pattern because it can negatively impact performance and cause issues with component state.
+
+### `Why? Not using a stable ID is an anti-pattern because it can negatively impact performance and cause issues with component state.`
 
 We don’t recommend using indexes for keys if the order of items may change.
 
-// bad
-{todos.map((todo, index) =>
-<Todo
-{...todo}
-key={index}
-/>
-)}
-
-// good
-{todos.map(todo => (
-<Todo
-{...todo}
-key={todo.id}
-/>
-))}
 Always define explicit defaultProps for all non-required props.
-Why? propTypes are a form of documentation, and providing defaultProps means the reader of your code doesn’t have to assume as much. In addition, it can mean that your code can omit certain type checks.
 
-// bad
-function SFC({ foo, bar, children }) {
-return <div>{foo}{bar}{children}</div>;
-}
-SFC.propTypes = {
-foo: PropTypes.number.isRequired,
-bar: PropTypes.string,
-children: PropTypes.node,
-};
-
-// good
-function SFC({ foo, bar, children }) {
-return <div>{foo}{bar}{children}</div>;
-}
-
-SFC.propTypes = {
-foo: PropTypes.number.isRequired,
-bar: PropTypes.string,
-children: PropTypes.node,
-};
-SFC.defaultProps = {
-bar: '',
-children: null,
-};
+### `Why? propTypes are a form of documentation, and providing defaultProps means the reader of your code doesn’t have to assume as much. In addition, it can mean that your code can omit certain type checks.`
 
 Use spread props sparingly.
 
-Why? Otherwise you’re more likely to pass unnecessary props down to components. And for React v15.6.1 and older, you could pass invalid HTML attributes to the DOM.
+### `Why? Otherwise you’re more likely to pass unnecessary props down to components. And for React v15.6.1 and older, you could pass invalid HTML attributes to the DOM.`
 
 Exceptions:
 
 HOCs that proxy down props and hoist propTypes
 
-function HOC(WrappedComponent) {
-return class Proxy extends React.Component {
-Proxy.propTypes = {
-text: PropTypes.string,
-isLoading: PropTypes.bool
-};
-
-    render() {
-      return <WrappedComponent {...this.props} />
-    }
-
-}
-}
-
 Spreading objects with known, explicit props. This can be particularly useful when testing React components with Mocha’s beforeEach construct.
-export default function Foo {
-const props = {
-text: '',
-isPublished: false
-}
-
-return (<div {...props} />);
-}
 
 Notes for use: Filter out unnecessary props when possible. Also, use prop-types-exact to help prevent bugs.
-
-// bad
-render() {
-const { irrelevantProp, ...relevantProps } = this.props;
-return <WrappedComponent {...this.props} />
-}
-
-// good
-render() {
-const { irrelevantProp, ...relevantProps } = this.props;
-return <WrappedComponent {...relevantProps} />
-}
 
 ## Refs
 
 Always use ref callbacks. eslint: react/no-string-refs
 
-// bad
-<Foo
-  ref="myRef"
-/>
-
-// good
-<Foo
-ref={(ref) => { this.myRef = ref; }}
-/>
-
 ## Parentheses
 
 Wrap JSX tags in parentheses when they span more than one line. eslint: react/jsx-wrap-multilines
-
-// bad
-render() {
-return <MyComponent variant="long body" foo="bar">
-<MyChild />
-</MyComponent>;
-}
-
-// good
-render() {
-return (
-<MyComponent variant="long body" foo="bar">
-<MyChild />
-</MyComponent>
-);
-}
-
-// good, when single line
-render() {
-const body = <div>hello</div>;
-return <MyComponent>{body}</MyComponent>;
-}
 
 ## Tags
 
 Always self-close tags that have no children. eslint: react/self-closing-comp
 
-// bad
-<Foo variant="stuff"></Foo>
-
-// good
-<Foo variant="stuff" />
-If your component has multiline properties, close its tag on a new line. eslint: react/jsx-closing-bracket-location
-
-// bad
-<Foo
-  bar="bar"
-  baz="baz" />
-
-// good
-<Foo
-  bar="bar"
-  baz="baz"
-/>
-
 ## Methods
 
 Use arrow functions to close over local variables. It is handy when you need to pass additional data to an event handler. Although, make sure they do not massively hurt performance, in particular when passed to custom components that might be PureComponents, because they will trigger a possibly needless rerender every time.
 
-function ItemList(props) {
-return (
-
-<ul>
-{props.items.map((item, index) => (
-<Item
-key={item.key}
-onClick={(event) => { doSomethingWith(event, item.name, index); }}
-/>
-))}
-</ul>
-);
-}
 Bind event handlers for the render method in the constructor. eslint: react/jsx-no-bind
 
-Why? A bind call in the render path creates a brand new function on every single render. Do not use arrow functions in class fields, because it makes them challenging to test and debug, and can negatively impact performance, and because conceptually, class fields are for data, not logic.
-
-// bad
-class extends React.Component {
-onClickDiv() {
-// do stuff
-}
-
-render() {
-return <div onClick={this.onClickDiv.bind(this)} />;
-}
-}
-
-// very bad
-class extends React.Component {
-onClickDiv = () => {
-// do stuff
-}
-
-render() {
-return <div onClick={this.onClickDiv} />
-}
-}
-
-// good
-class extends React.Component {
-constructor(props) {
-super(props);
-
-    this.onClickDiv = this.onClickDiv.bind(this);
-
-}
-
-onClickDiv() {
-// do stuff
-}
-
-render() {
-return <div onClick={this.onClickDiv} />;
-}
-}
+### `Why? A bind call in the render path creates a brand new function on every single render. Do not use arrow functions in class fields, because it makes them challenging to test and debug, and can negatively impact performance, and because conceptually, class fields are for data, not logic.`
 
 Do not use underscore prefix for internal methods of a React component.
 
-Why? Underscore prefixes are sometimes used as a convention in other languages to denote privacy. But, unlike those languages, there is no native support for privacy in JavaScript, everything is public. Regardless of your intentions, adding underscore prefixes to your properties does not actually make them private, and any property (underscore-prefixed or not) should be treated as being public. See issues #1024, and #490 for a more in-depth discussion.
+### `Why? Underscore prefixes are sometimes used as a convention in other languages to denote privacy. But, unlike those languages, there is no native support for privacy in JavaScript, everything is public. Regardless of your intentions, adding underscore prefixes to your properties does not actually make them private, and any property (underscore-prefixed or not) should be treated as being public. See issues #1024, and #490 for a more in-depth discussion.`
 
-// bad
-React.createClass({
-\_onClickSubmit() {
-// do stuff
-},
-
-// other stuff
-});
-
-// good
-class extends React.Component {
-onClickSubmit() {
-// do stuff
-}
-
-// other stuff
-}
 Be sure to return a value in your render methods. eslint: react/require-render-return
-
-// bad
-render() {
-(<div />);
-}
-
-// good
-render() {
-return (<div />);
-}
 
 ## Ordering
 
 Ordering for class extends React.Component:
 
-optional static methods
-constructor
-getChildContext
-componentWillMount
-componentDidMount
-componentWillReceiveProps
-shouldComponentUpdate
-componentWillUpdate
-componentDidUpdate
-componentWillUnmount
-event handlers starting with 'handle' like handleSubmit() or handleChangeDescription()
-event handlers starting with 'on' like onClickSubmit() or onChangeDescription()
-getter methods for render like getSelectReason() or getFooterContent()
-optional render methods like renderNavigation() or renderProfilePicture()
-render
-
-How to define propTypes, defaultProps, contextTypes, etc...
-
-import React from 'react';
-import PropTypes from 'prop-types';
-
-const propTypes = {
-  id: PropTypes.number.isRequired,
-  url: PropTypes.string.isRequired,
-  text: PropTypes.string,
-};
-
-const defaultProps = {
-  text: 'Hello World',
-};
-
-class Link extends React.Component {
-  static methodsAreOk() {
-    return true;
-  }
-
-  render() {
-    return <a href={this.props.url} data-id={this.props.id}>{this.props.text}</a>;
-  }
-}
-
-Link.propTypes = propTypes;
-Link.defaultProps = defaultProps;
-
-export default Link;
+1. optional static methods
+2. constructor
+3. getChildContext
+4. componentWillMount
+5. componentDidMount
+6. componentWillReceiveProps
+7. shouldComponentUpdate
+8. componentWillUpdate
+9. componentDidUpdate
+10. componentWillUnmount
+11. event handlers starting with 'handle' like handleSubmit() or handleChangeDescription()
+12. event handlers starting with 'on' like onClickSubmit() or onChangeDescription()
+13. getter methods for render like getSelectReason() or getFooterContent()
+14. optional render methods like renderNavigation() or renderProfilePicture()
+15. render
 
 Ordering for React.createClass: eslint: react/sort-comp
 
-displayName
-propTypes
-contextTypes
-childContextTypes
-mixins
-statics
-defaultProps
-getDefaultProps
-getInitialState
-getChildContext
-componentWillMount
-componentDidMount
-componentWillReceiveProps
-shouldComponentUpdate
-componentWillUpdate
-componentDidUpdate
-componentWillUnmount
-clickHandlers or eventHandlers like onClickSubmit() or onChangeDescription()
-getter methods for render like getSelectReason() or getFooterContent()
-optional render methods like renderNavigation() or renderProfilePicture()
-render
+1. displayName
+2. propTypes
+3. contextTypes
+4. childContextTypes
+5. mixins
+6. statics
+7. defaultProps
+8. getDefaultProps
+9. getInitialState
+10. getChildContext
+11. componentWillMount
+12. componentDidMount
+13. componentWillReceiveProps
+14. shouldComponentUpdate
+15. componentWillUpdate
+16. componentDidUpdate
+17. componentWillUnmount
+18. clickHandlers or eventHandlers like onClickSubmit() or onChangeDescription()
+19. getter methods for render like getSelectReason() or getFooterContent()
+20. optional render methods like renderNavigation() or renderProfilePicture()
+21. render
 
-##isMounted
+## isMounted
 
 Do not use isMounted. eslint: react/no-is-mounted
 
-Why? isMounted is an anti-pattern, is not available when using ES6 classes, and is on its way to being officially deprecated.
+### `Why? isMounted is an anti-pattern, is not available when using ES6 classes, and is on its way to being officially deprecated.`
