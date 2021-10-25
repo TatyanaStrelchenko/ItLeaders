@@ -1,7 +1,6 @@
 import React from 'react';
 import Avatar from 'antd/lib/avatar';
 import { Col, Row } from 'antd';
-// import styles from './Sponsors.module.css';
 import graphql from 'babel-plugin-relay/macro';
 
 import {

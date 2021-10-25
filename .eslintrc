@@ -25,5 +25,15 @@
     "import/order": "error",
     "react/sort-comp": "error",
     "spaced-comment": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.test.tsx"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }
