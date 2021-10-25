@@ -81,11 +81,11 @@ Use PascalCase for React components and camelCase for their instances. eslint: r
 Higher-order Component Naming:
 Use a composite of the higher-order component’s name and the passed-in component’s name as the displayName on the generated component. For example, the higher-order component withFoo(), when passed a component Bar should produce a component with a displayName of withFoo(Bar).
 
-### `Why?` A component’s displayName may be used by developer tools or in error messages, and having a value that clearly expresses this relationship helps people understand what is happening.
+#### `Why?` A component’s displayName may be used by developer tools or in error messages, and having a value that clearly expresses this relationship helps people understand what is happening.
 
 Props Naming: Avoid using DOM component prop names for different purposes.
 
-### `Why?` People expect props like style and className to mean one specific thing. Varying this API for a subset of your app makes the code less readable and less maintainable, and may cause bugs.
+#### `Why?` People expect props like style and className to mean one specific thing. Varying this API for a subset of your app makes the code less readable and less maintainable, and may cause bugs.
 
 ## Declaration
 
@@ -109,7 +109,7 @@ Follow these alignment styles for JSX syntax. eslint: react/jsx-closing-bracket-
 
 Always use double quotes (") for JSX attributes, but single quotes (') for all other JS. eslint: jsx-quotes
 
-### `Why?` Regular HTML attributes also typically use double quotes instead of single, so JSX attributes mirror this convention.
+#### `Why?` Regular HTML attributes also typically use double quotes instead of single, so JSX attributes mirror this convention.
 
 ## Spacing
 
@@ -125,25 +125,25 @@ Always include an alt prop on <img> tags. If the image is presentational, alt ca
 
 Do not use words like "image", "photo", or "picture" in <img> alt props. eslint: jsx-a11y/img-redundant-alt
 
-### `Why?` Screenreaders already announce img elements as images, so there is no need to include this information in the alt text.
+#### `Why?` Screenreaders already announce img elements as images, so there is no need to include this information in the alt text.
 
 Do not use accessKey on elements. eslint: jsx-a11y/no-access-key
 
-### `Why?` Inconsistencies between keyboard shortcuts and keyboard commands used by people using screenreaders and keyboards complicate accessibility.
+#### `Why?` Inconsistencies between keyboard shortcuts and keyboard commands used by people using screenreaders and keyboards complicate accessibility.
 
 Avoid using an array index as key prop, prefer a stable ID. eslint: react/no-array-index-key
 
-### `Why?` Not using a stable ID is an anti-pattern because it can negatively impact performance and cause issues with component state.
+#### `Why?` Not using a stable ID is an anti-pattern because it can negatively impact performance and cause issues with component state.
 
 We don’t recommend using indexes for keys if the order of items may change.
 
 Always define explicit defaultProps for all non-required props.
 
-### `Why?` propTypes are a form of documentation, and providing defaultProps means the reader of your code doesn’t have to assume as much. In addition, it can mean that your code can omit certain type checks.
+#### `Why?` propTypes are a form of documentation, and providing defaultProps means the reader of your code doesn’t have to assume as much. In addition, it can mean that your code can omit certain type checks.
 
 Use spread props sparingly.
 
-### `Why?` Otherwise you’re more likely to pass unnecessary props down to components. And for React v15.6.1 and older, you could pass invalid HTML attributes to the DOM.
+#### `Why?` Otherwise you’re more likely to pass unnecessary props down to components. And for React v15.6.1 and older, you could pass invalid HTML attributes to the DOM.
 
 Exceptions:
 
@@ -171,11 +171,11 @@ Use arrow functions to close over local variables. It is handy when you need to 
 
 Bind event handlers for the render method in the constructor. eslint: react/jsx-no-bind
 
-### `Why?` A bind call in the render path creates a brand new function on every single render. Do not use arrow functions in class fields, because it makes them challenging to test and debug, and can negatively impact performance, and because conceptually, class fields are for data, not logic.
+#### `Why?` A bind call in the render path creates a brand new function on every single render. Do not use arrow functions in class fields, because it makes them challenging to test and debug, and can negatively impact performance, and because conceptually, class fields are for data, not logic.
 
 Do not use underscore prefix for internal methods of a React component.
 
-### `Why?` Underscore prefixes are sometimes used as a convention in other languages to denote privacy. But, unlike those languages, there is no native support for privacy in JavaScript, everything is public. Regardless of your intentions, adding underscore prefixes to your properties does not actually make them private, and any property (underscore-prefixed or not) should be treated as being public. See issues #1024, and #490 for a more in-depth discussion.
+#### `Why?` Underscore prefixes are sometimes used as a convention in other languages to denote privacy. But, unlike those languages, there is no native support for privacy in JavaScript, everything is public. Regardless of your intentions, adding underscore prefixes to your properties does not actually make them private, and any property (underscore-prefixed or not) should be treated as being public. See issues #1024, and #490 for a more in-depth discussion.
 
 Be sure to return a value in your render methods. eslint: react/require-render-return
 
