@@ -1,12 +1,45 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
+import React, { Suspense } from 'react';
+import { RelayEnvironmentProvider } from 'react-relay/hooks';
+import { createMockEnvironment, MockPayloadGenerator } from 'relay-test-utils';
+
 import Sponsors from './Sponsors';
 
 test('renders sponsors text', () => {
-  render(<Sponsors />);
-  const titleText = screen.getByText('Sponsors');
-  expect(titleText).toBeInTheDocument();
+  const mockEnvironment = createMockEnvironment();
 
-  const title = screen.getByRole('header');
-  expect(title).toBeInTheDocument();
+  mockEnvironment.mock.queueOperationResolver((operation) =>
+    MockPayloadGenerator.generate(operation),
+  );
+
+  render(
+    <RelayEnvironmentProvider environment={mockEnvironment}>
+      <Suspense fallback="Loading...">
+        <Sponsors />
+      </Suspense>
+    </RelayEnvironmentProvider>,
+  );
+
+  const titleSection = screen.getByText('Sponsors');
+  expect(titleSection).toBeInTheDocument();
+
+  // screen.debug();
+  //
+  // const title = screen.getByRole('heading');
+  // expect(title).toBeInTheDocument();
+
+  //check the count of sponsors
+
+  // const items = screen.findAllByRole('listitem');
+  // expect(items).toHaveLength(13);
+
+  //check the remaining number of sponsors
+
+  //check the avatars show
+
+  //check the popup show
+
+  //check the popup info show
+
+  //check the info in popups
 });

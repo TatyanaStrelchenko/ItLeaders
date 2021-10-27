@@ -1,13 +1,12 @@
 import React from 'react';
-import { Button } from 'antd';
 import graphql from 'babel-plugin-relay/macro';
 import './App.css';
 
 import {
-  usePreloadedQuery,
   RelayEnvironmentProvider,
   loadQuery,
   PreloadedQuery,
+  usePreloadedQuery,
 } from 'react-relay/hooks';
 import RelayEnvironment from './RelayEnvironment';
 import { AppRepositoryNameQuery } from './__generated__/AppRepositoryNameQuery.graphql';
@@ -19,9 +18,7 @@ const { Suspense } = React;
 const RepositoryNameQuery = graphql`
   query AppRepositoryNameQuery {
     user(login: "M0nica") {
-      sponsors {
-        totalCount
-      }
+      name
     }
   }
 `;
@@ -30,24 +27,17 @@ const preloadedQuery = loadQuery<AppRepositoryNameQuery>(RelayEnvironment, Repos
   /* query variables */
 });
 
-interface AppProps {
+type AppProps = {
   preloadedQuery: PreloadedQuery<AppRepositoryNameQuery>;
-}
+};
 
 function App(props: AppProps) {
   const { user } = usePreloadedQuery(RepositoryNameQuery, props.preloadedQuery);
 
   return (
     <div className="App">
-      <header className="App-header">
-        {console.log('user', user)}
-        <p>{user?.sponsors.totalCount} sponsors</p>
-        <Button type="primary">Button</Button>
-        <a href="/" className="App-link">
-          Learn React
-        </a>
-        <Sponsors />
-      </header>
+      <p>{user?.name}</p>
+      <Sponsors />
     </div>
   );
 }

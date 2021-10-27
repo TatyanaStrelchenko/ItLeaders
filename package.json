@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.3.0",
-    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.15",
@@ -76,6 +76,11 @@
     "relay-test-utils": "^12.0.0",
     "typescript-eslint": "^0.0.1-alpha.0"
   },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!antd|@ant-design|rc-.+?|@babel/runtime).+(js|jsx)$"
+    ]
+  },
   "lint-staged": {
     "*.{js,css,md,ts,tsx,json}": "prettier --write"
   },
@@ -83,10 +88,5 @@
     ".js, .jsx, .ts, .tsx": {
       "style": "module"
     }
-  },
-  "jest": {
-    "transformIgnorePatterns": [
-      "/node_modules/(?!antd|@ant-design|rc-.+?|@babel/runtime).+(js|jsx)$"
-    ]
   }
 }
