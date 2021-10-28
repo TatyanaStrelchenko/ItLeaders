@@ -29,9 +29,9 @@ test('renders sponsors text', () => {
   // expect(title).toBeInTheDocument();
 
   //check the count of sponsors
-
-  // const items = screen.findAllByRole('listitem');
-  // expect(items).toHaveLength(13);
+  expect(screen.getByDisplayValue('56')).toBeInTheDocument();
+  const items = screen.findAllByRole('listitem');
+  expect(items).toHaveLength(13);
 
   //check the remaining number of sponsors
 

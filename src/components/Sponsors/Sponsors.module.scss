@@ -9,9 +9,9 @@
   li {
     width: 30px;
     height: 30px;
-    margin: 10px;
+    margin: 2px;
     position: relative;
-    
+
     &:hover {
       .popup {
         display: block;
@@ -30,6 +30,7 @@
 
 .popup {
   border: 1px solid grey;
+  background: white;
   border-radius: 6px;
   padding: 8px;
   font-size: 12px;
@@ -39,6 +40,10 @@
   bottom: 100%;
   width: 320px;
   margin-bottom: 5px;
+
+  .avatarHolder {
+    width: 50px;
+  }
 }
 
 .holder {

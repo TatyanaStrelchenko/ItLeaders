@@ -46,30 +46,40 @@ const Sponsors = () => {
   const listNodes = data.user?.sponsors.edges;
   console.log('listNodes', listNodes);
 
+  const list = data.user?.sponsors.edges;
+
+  console.log({ list });
+
+  const listSponsors = list?.map((item: any) => (
+    <li>
+      <Avatar src={item.node.avatarUrl} />
+      <div className={styles.popup}>
+        <div className={styles.holder}>
+          <Row>
+            <Col span={6}>
+              <div className={styles.avatarHolder}>
+                <Avatar src={item.node.avatarUrl} />
+              </div>
+            </Col>
+            <Col span={18}>
+              <h3>
+                {item.node.name} <span>m90</span>
+              </h3>
+              <p>text</p>
+              <address>location</address>
+            </Col>
+          </Row>
+          <div className={styles.memberInfo}>member</div>
+        </div>
+      </div>
+    </li>
+  ));
+
   return (
     <section className={styles.section}>
       <h2>Sponsors</h2>
       <ul className={styles.sponsorsList}>
-        <li>
-          <Avatar src="https://joeschmoe.io/api/v1/random" />
-          <div className={styles.popup}>
-            <div className={styles.holder}>
-              <Row>
-                <Col span={12}>
-                  <Avatar src="https://joeschmoe.io/api/v1/random" />
-                </Col>
-                <Col span={12}>
-                  <h3>
-                    Frederik Ring <span>m90</span>
-                  </h3>
-                  <p>text</p>
-                  <address>location</address>
-                </Col>
-              </Row>
-              <div className={styles.memberInfo}>member</div>
-            </div>
-          </div>
-        </li>
+        {listSponsors}
         <li>{data.user?.sponsors.totalCount}</li>
       </ul>
       {/*{getSponsorsInfo}*/}
