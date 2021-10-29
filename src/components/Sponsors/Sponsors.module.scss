@@ -1,15 +1,20 @@
 .section {
-  padding: 50px 0;
+  padding: 25px 25px 25px 0;
+  border-top: 1px solid var(--color-border-default);
+  max-width: 296px;
+  margin-top: 50px;
 }
 
 .sponsorsList {
   list-style: none;
-  display: flex;
+  padding: 0;
 
   li {
-    width: 30px;
-    height: 30px;
-    margin: 2px;
+    display: inline-flex;
+    vertical-align: top;
+    width: 35px;
+    height: 35px;
+    margin: 1px;
     position: relative;
 
     &:hover {
@@ -21,7 +26,6 @@
     &:last-child {
       border-radius: 6px;
       border: 1px solid var(--color-border-default);
-      display: flex;
       align-items: center;
       justify-content: center;
     }
@@ -41,11 +45,22 @@
   width: 320px;
   margin-bottom: 5px;
 
-  .avatarHolder {
-    width: 50px;
+  .title {
+    margin-bottom: 5px;
   }
+
+  p {
+    margin-bottom: 5px;
+  }
+
 }
 
 .holder {
-  text-align: left;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--color-border-default);
+  padding-bottom: 5px;
+}
+
+.iconHolder {
+  margin-right: 5px;
 }
