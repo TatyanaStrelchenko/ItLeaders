@@ -30,6 +30,13 @@ const RepositoryNameQuery = graphql`
                   octicon
                 }
               }
+              organizations(first: 10) {
+                edges {
+                  node {
+                    name
+                  }
+                }
+              }
             }
           }
         }
@@ -117,21 +124,24 @@ const Sponsors = () => {
             </Col>
             <Col span={18}>
               <h3 className={styles.title}>
-                {item.node.name} <span>{item.node.login}</span>
+                {item.node.name} <span className={styles.login}> {item.node.login}</span>
               </h3>
               <p>{item.node.bio}</p>
-              <address>
-                <span className={styles.iconHolder}>
-                  <LocationIcon style={{ fontSize: '12px', color: '#8b949e' }} />
-                </span>
-                {item.node.location}
-              </address>
+              {item.node.location && (
+                <address className={styles.location}>
+                  <span className={styles.iconHolder}>
+                    <LocationIcon style={{ fontSize: '12px', color: '#8b949e' }} />
+                  </span>
+                  {item.node.location}
+                </address>
+              )}
             </Col>
           </Row>
         </div>
         <div className={styles.memberInfo}>
           <span className={styles.iconHolder}>
             <MembersIcon style={{ fontSize: '12px', color: '#8b949e' }} />
+            {console.log('organization', item.node.organizations)}
           </span>
           member
         </div>
@@ -144,9 +154,8 @@ const Sponsors = () => {
       <h2>Sponsors</h2>
       <ul className={styles.sponsorsList}>
         {listSponsors}
-        <li>{data.user?.sponsors.totalCount}</li>
+        <li>+{data.user?.sponsors.totalCount}</li>
       </ul>
-      {/*{getSponsorsInfo}*/}
     </section>
   );
 };

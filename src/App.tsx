@@ -1,7 +1,6 @@
 import React from 'react';
 import graphql from 'babel-plugin-relay/macro';
 import './App.css';
-import Button from 'antd/lib/button';
 
 import {
   RelayEnvironmentProvider,
@@ -39,7 +38,6 @@ function App(props: AppProps) {
     <div className="App">
       <p>{user?.name}</p>
       <Sponsors />
-      <Button type="primary">Primary Button</Button>
     </div>
   );
 }

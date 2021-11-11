@@ -3,6 +3,15 @@
   border-top: 1px solid var(--color-border-default);
   max-width: 296px;
   margin-top: 50px;
+  margin-left: 20px;
+
+  h2 {
+    color: #fff;
+  }
+}
+
+.login {
+  color: #8b949e;
 }
 
 .sponsorsList {
@@ -28,6 +37,7 @@
       border: 1px solid var(--color-border-default);
       align-items: center;
       justify-content: center;
+      color: #8b949e;
     }
   }
 }
@@ -36,7 +46,7 @@
   border: 1px solid grey;
   background: white;
   border-radius: 6px;
-  padding: 8px;
+  padding: 8px 0 0;
   font-size: 12px;
   display: none;
   position: absolute;
@@ -52,15 +62,22 @@
   p {
     margin-bottom: 5px;
   }
-
 }
 
 .holder {
-  margin-bottom: 10px;
   border-bottom: 1px solid var(--color-border-default);
-  padding-bottom: 5px;
+  padding: 5px;
 }
 
 .iconHolder {
   margin-right: 5px;
+}
+
+.location {
+  margin: 0;
+  color: #8b949e;
+}
+
+.memberInfo {
+  padding: 5px;
 }

@@ -23,6 +23,13 @@ export type SponsorsQueryResponse = {
                             readonly octicon: string;
                         }>;
                     };
+                    readonly organizations?: {
+                        readonly edges: ReadonlyArray<{
+                            readonly node: {
+                                readonly name: string | null;
+                            } | null;
+                        } | null> | null;
+                    };
                 } | null;
             } | null> | null;
         };
@@ -55,6 +62,14 @@ query SponsorsQuery {
                 __typename
                 message
                 octicon
+              }
+            }
+            organizations(first: 10) {
+              edges {
+                node {
+                  name
+                  id
+                }
               }
             }
           }
@@ -148,7 +163,14 @@ v10 = {
   "name": "octicon",
   "storageKey": null
 },
-v11 = {
+v11 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 10
+  }
+],
+v12 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -227,6 +249,40 @@ return {
                               }
                             ],
                             "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": (v11/*: any*/),
+                            "concreteType": "OrganizationConnection",
+                            "kind": "LinkedField",
+                            "name": "organizations",
+                            "plural": false,
+                            "selections": [
+                              {
+                                "alias": null,
+                                "args": null,
+                                "concreteType": "OrganizationEdge",
+                                "kind": "LinkedField",
+                                "name": "edges",
+                                "plural": true,
+                                "selections": [
+                                  {
+                                    "alias": null,
+                                    "args": null,
+                                    "concreteType": "Organization",
+                                    "kind": "LinkedField",
+                                    "name": "node",
+                                    "plural": false,
+                                    "selections": [
+                                      (v5/*: any*/)
+                                    ],
+                                    "storageKey": null
+                                  }
+                                ],
+                                "storageKey": null
+                              }
+                            ],
+                            "storageKey": "organizations(first:10)"
                           }
                         ],
                         "type": "User",
@@ -287,7 +343,7 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v11/*: any*/),
+                      (v12/*: any*/),
                       {
                         "kind": "InlineFragment",
                         "selections": [
@@ -313,7 +369,7 @@ return {
                                 "name": "contexts",
                                 "plural": true,
                                 "selections": [
-                                  (v11/*: any*/),
+                                  (v12/*: any*/),
                                   (v9/*: any*/),
                                   (v10/*: any*/)
                                 ],
@@ -321,6 +377,41 @@ return {
                               }
                             ],
                             "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": (v11/*: any*/),
+                            "concreteType": "OrganizationConnection",
+                            "kind": "LinkedField",
+                            "name": "organizations",
+                            "plural": false,
+                            "selections": [
+                              {
+                                "alias": null,
+                                "args": null,
+                                "concreteType": "OrganizationEdge",
+                                "kind": "LinkedField",
+                                "name": "edges",
+                                "plural": true,
+                                "selections": [
+                                  {
+                                    "alias": null,
+                                    "args": null,
+                                    "concreteType": "Organization",
+                                    "kind": "LinkedField",
+                                    "name": "node",
+                                    "plural": false,
+                                    "selections": [
+                                      (v5/*: any*/),
+                                      (v3/*: any*/)
+                                    ],
+                                    "storageKey": null
+                                  }
+                                ],
+                                "storageKey": null
+                              }
+                            ],
+                            "storageKey": "organizations(first:10)"
                           }
                         ],
                         "type": "User",
@@ -350,14 +441,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "fd831b217e3eb6d744ae1ede1cf59062",
+    "cacheID": "f2331f98bad7a0caaea643099b9541d8",
     "id": null,
     "metadata": {},
     "name": "SponsorsQuery",
     "operationKind": "query",
-    "text": "query SponsorsQuery {\n  user(login: \"M0nica\") {\n    sponsors(first: 13) {\n      totalCount\n      edges {\n        node {\n          __typename\n          ... on User {\n            id\n            avatarUrl\n            name\n            bio\n            login\n            location\n            hovercard {\n              contexts {\n                __typename\n                message\n                octicon\n              }\n            }\n          }\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n"
+    "text": "query SponsorsQuery {\n  user(login: \"M0nica\") {\n    sponsors(first: 13) {\n      totalCount\n      edges {\n        node {\n          __typename\n          ... on User {\n            id\n            avatarUrl\n            name\n            bio\n            login\n            location\n            hovercard {\n              contexts {\n                __typename\n                message\n                octicon\n              }\n            }\n            organizations(first: 10) {\n              edges {\n                node {\n                  name\n                  id\n                }\n              }\n            }\n          }\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '78d89fa5844c58667455b375d057ac27';
+(node as any).hash = '410e5dafa0722d8c397b5e1dc5fd3fc9';
 export default node;
