@@ -27,7 +27,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "nodemon -w craco.config.js -w ./src/antd.customize.scss --exec \"node ./src/scss-to-less && craco start && yarn run relay\"",
+    "start": "nodemon -w craco.config.js -w ./src/antd.customize.scss --exec \"node ./src/scss-to-less && yarn craco start && yarn run relay\"",
     "build": "yarn run relay && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
