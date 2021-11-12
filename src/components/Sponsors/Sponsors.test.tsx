@@ -17,15 +17,6 @@ function renderSponsors() {
     </RelayEnvironmentProvider>,
   );
 
-  return {
-    mockEnvironment,
-    container,
-  };
-}
-
-test('renders sponsors information', async () => {
-  const { mockEnvironment } = renderSponsors();
-
   mockEnvironment.mock.resolveMostRecentOperation((operation: any) =>
     MockPayloadGenerator.generate(operation, {
       Query(): SponsorsQueryResponse {
@@ -51,9 +42,18 @@ test('renders sponsors information', async () => {
     }),
   );
 
+  return {
+    mockEnvironment,
+    container,
+  };
+}
+
+test('renders sponsors information', async () => {
+  renderSponsors();
+
   //check sponsors info
   expect(await screen.findByText('Sponsor name')).toBeInTheDocument();
-  const image = screen.getByAltText(/avatar/i);
+  const image = screen.getByRole('img', { name: 'avatar' });
 
   expect(screen.getByText('Sponsor address')).toBeInTheDocument();
   expect(screen.getByText('m0nica')).toBeInTheDocument();
@@ -62,4 +62,30 @@ test('renders sponsors information', async () => {
 
   const titleSection = screen.getByText('Sponsors');
   expect(titleSection).toBeInTheDocument();
+});
+
+test('renders sponsors section', async () => {
+  renderSponsors();
+  const titleSection = await screen.findByText('Sponsors');
+  expect(titleSection).toBeInTheDocument();
+});
+
+test('renders preloader', () => {
+  const mockEnvironment = createMockEnvironment();
+
+  // screen.debug();
+
+  render(
+    <RelayEnvironmentProvider environment={mockEnvironment}>
+      <Suspense fallback="Loading...">
+        <Sponsors />
+      </Suspense>
+    </RelayEnvironmentProvider>,
+  );
+
+  mockEnvironment.mock.resolveMostRecentOperation((operation) =>
+    MockPayloadGenerator.generate(operation),
+  );
+  expect(screen.getByText(/loading/i)).toBeInTheDocument();
+  // screen.debug();
 });

@@ -104,8 +104,12 @@ const Sponsors = () => {
     </svg>
   );
 
-  const LocationIcon = (props: any) => <Icon component={locationSvg} {...props} />;
-  const MembersIcon = (props: any) => <Icon component={membersSvg} {...props} />;
+  const LocationIcon = (props: { style: React.CSSProperties }) => (
+    <Icon component={locationSvg} {...props} />
+  );
+  const MembersIcon = (props: { style: React.CSSProperties }) => (
+    <Icon component={membersSvg} {...props} />
+  );
 
   const listSponsors = list?.map((item: any) => {
     const organizationsList = item.node.organizations ? item.node.organizations.edges : [];
