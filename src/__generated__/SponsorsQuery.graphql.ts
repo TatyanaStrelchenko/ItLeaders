@@ -17,12 +17,6 @@ export type SponsorsQueryResponse = {
                     readonly bio?: string | null;
                     readonly login?: string;
                     readonly location?: string | null;
-                    readonly hovercard?: {
-                        readonly contexts: ReadonlyArray<{
-                            readonly message: string;
-                            readonly octicon: string;
-                        }>;
-                    };
                     readonly organizations?: {
                         readonly edges: ReadonlyArray<{
                             readonly node: {
@@ -57,13 +51,6 @@ query SponsorsQuery {
             bio
             login
             location
-            hovercard {
-              contexts {
-                __typename
-                message
-                octicon
-              }
-            }
             organizations(first: 10) {
               edges {
                 node {
@@ -149,34 +136,13 @@ v8 = {
   "name": "location",
   "storageKey": null
 },
-v9 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "message",
-  "storageKey": null
-},
-v10 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "octicon",
-  "storageKey": null
-},
-v11 = [
+v9 = [
   {
     "kind": "Literal",
     "name": "first",
     "value": 10
   }
-],
-v12 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "__typename",
-  "storageKey": null
-};
+];
 return {
   "fragment": {
     "argumentDefinitions": [],
@@ -228,31 +194,7 @@ return {
                           (v8/*: any*/),
                           {
                             "alias": null,
-                            "args": null,
-                            "concreteType": "Hovercard",
-                            "kind": "LinkedField",
-                            "name": "hovercard",
-                            "plural": false,
-                            "selections": [
-                              {
-                                "alias": null,
-                                "args": null,
-                                "concreteType": null,
-                                "kind": "LinkedField",
-                                "name": "contexts",
-                                "plural": true,
-                                "selections": [
-                                  (v9/*: any*/),
-                                  (v10/*: any*/)
-                                ],
-                                "storageKey": null
-                              }
-                            ],
-                            "storageKey": null
-                          },
-                          {
-                            "alias": null,
-                            "args": (v11/*: any*/),
+                            "args": (v9/*: any*/),
                             "concreteType": "OrganizationConnection",
                             "kind": "LinkedField",
                             "name": "organizations",
@@ -343,7 +285,13 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v12/*: any*/),
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "__typename",
+                        "storageKey": null
+                      },
                       {
                         "kind": "InlineFragment",
                         "selections": [
@@ -355,32 +303,7 @@ return {
                           (v8/*: any*/),
                           {
                             "alias": null,
-                            "args": null,
-                            "concreteType": "Hovercard",
-                            "kind": "LinkedField",
-                            "name": "hovercard",
-                            "plural": false,
-                            "selections": [
-                              {
-                                "alias": null,
-                                "args": null,
-                                "concreteType": null,
-                                "kind": "LinkedField",
-                                "name": "contexts",
-                                "plural": true,
-                                "selections": [
-                                  (v12/*: any*/),
-                                  (v9/*: any*/),
-                                  (v10/*: any*/)
-                                ],
-                                "storageKey": null
-                              }
-                            ],
-                            "storageKey": null
-                          },
-                          {
-                            "alias": null,
-                            "args": (v11/*: any*/),
+                            "args": (v9/*: any*/),
                             "concreteType": "OrganizationConnection",
                             "kind": "LinkedField",
                             "name": "organizations",
@@ -441,14 +364,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "f2331f98bad7a0caaea643099b9541d8",
+    "cacheID": "81bb750b2f873d8f7a7bfc062eb382d5",
     "id": null,
     "metadata": {},
     "name": "SponsorsQuery",
     "operationKind": "query",
-    "text": "query SponsorsQuery {\n  user(login: \"M0nica\") {\n    sponsors(first: 13) {\n      totalCount\n      edges {\n        node {\n          __typename\n          ... on User {\n            id\n            avatarUrl\n            name\n            bio\n            login\n            location\n            hovercard {\n              contexts {\n                __typename\n                message\n                octicon\n              }\n            }\n            organizations(first: 10) {\n              edges {\n                node {\n                  name\n                  id\n                }\n              }\n            }\n          }\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n"
+    "text": "query SponsorsQuery {\n  user(login: \"M0nica\") {\n    sponsors(first: 13) {\n      totalCount\n      edges {\n        node {\n          __typename\n          ... on User {\n            id\n            avatarUrl\n            name\n            bio\n            login\n            location\n            organizations(first: 10) {\n              edges {\n                node {\n                  name\n                  id\n                }\n              }\n            }\n          }\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '410e5dafa0722d8c397b5e1dc5fd3fc9';
+(node as any).hash = 'bf1bf07068c979cdfa2bc5eba2ad4afb';
 export default node;

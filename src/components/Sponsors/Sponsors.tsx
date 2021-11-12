@@ -24,12 +24,6 @@ const RepositoryNameQuery = graphql`
               bio
               login
               location
-              hovercard {
-                contexts {
-                  message
-                  octicon
-                }
-              }
               organizations(first: 10) {
                 edges {
                   node {
@@ -70,8 +64,7 @@ const Sponsors = () => {
       width="1em"
       height="1em"
       fill="currentColor"
-      viewBox="0 0 395.71 395.71"
-    >
+      viewBox="0 0 395.71 395.71">
       <g>
         <path
           d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738
@@ -92,8 +85,7 @@ const Sponsors = () => {
       viewBox="0 0 512 512"
       width="1em"
       height="1em"
-      fill="currentColor"
-    >
+      fill="currentColor">
       <g>
         <g>
           <path
@@ -116,13 +108,13 @@ const Sponsors = () => {
   const MembersIcon = (props: any) => <Icon component={membersSvg} {...props} />;
 
   const listSponsors = list?.map((item: any) => (
-    <li>
+    <li key={item.node.id}>
       <Avatar size={35} src={item.node.avatarUrl} />
       <div className={styles.popup}>
         <div className={styles.holder}>
           <Row>
             <Col span={6}>
-              <Avatar size={60} src={item.node.avatarUrl} />
+              <Avatar size={60} src={item.node.avatarUrl} alt="avatar" />
             </Col>
             <Col span={18}>
               <h3 className={styles.title}>

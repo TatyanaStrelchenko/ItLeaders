@@ -4,15 +4,12 @@ import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import { createMockEnvironment, MockPayloadGenerator } from 'relay-test-utils';
 
 import Sponsors from './Sponsors';
+import { SponsorsQueryResponse } from '../../__generated__/SponsorsQuery.graphql';
 
-test('renders sponsors text', () => {
+function renderSponsors() {
   const mockEnvironment = createMockEnvironment();
 
-  mockEnvironment.mock.queueOperationResolver((operation) =>
-    MockPayloadGenerator.generate(operation),
-  );
-
-  render(
+  const { container } = render(
     <RelayEnvironmentProvider environment={mockEnvironment}>
       <Suspense fallback="Loading...">
         <Sponsors />
@@ -20,26 +17,49 @@ test('renders sponsors text', () => {
     </RelayEnvironmentProvider>,
   );
 
+  return {
+    mockEnvironment,
+    container,
+  };
+}
+
+test('renders sponsors information', async () => {
+  const { mockEnvironment } = renderSponsors();
+
+  mockEnvironment.mock.resolveMostRecentOperation((operation: any) =>
+    MockPayloadGenerator.generate(operation, {
+      Query(): SponsorsQueryResponse {
+        return {
+          user: {
+            sponsors: {
+              totalCount: 56,
+              edges: [
+                {
+                  node: {
+                    location: 'Sponsor address',
+                    name: 'Sponsor name',
+                    login: 'm0nica',
+                    avatarUrl: 'url',
+                    bio: 'Sponsors bio',
+                  },
+                },
+              ],
+            },
+          },
+        };
+      },
+    }),
+  );
+
+  //check sponsors info
+  expect(await screen.findByText('Sponsor name')).toBeInTheDocument();
+  const image = screen.getByAltText(/avatar/i);
+
+  expect(screen.getByText('Sponsor address')).toBeInTheDocument();
+  expect(screen.getByText('m0nica')).toBeInTheDocument();
+  expect(image).toHaveAttribute('src', 'url');
+  expect(screen.getByText('Sponsors bio')).toBeInTheDocument();
+
   const titleSection = screen.getByText('Sponsors');
   expect(titleSection).toBeInTheDocument();
-
-  // screen.debug();
-  //
-  // const title = screen.getByRole('heading');
-  // expect(title).toBeInTheDocument();
-
-  //check the count of sponsors
-  expect(screen.getByDisplayValue('56')).toBeInTheDocument();
-  const items = screen.findAllByRole('listitem');
-  expect(items).toHaveLength(13);
-
-  //check the remaining number of sponsors
-
-  //check the avatars show
-
-  //check the popup show
-
-  //check the popup info show
-
-  //check the info in popups
 });
