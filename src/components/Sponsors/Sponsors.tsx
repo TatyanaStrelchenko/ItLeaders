@@ -107,41 +107,47 @@ const Sponsors = () => {
   const LocationIcon = (props: any) => <Icon component={locationSvg} {...props} />;
   const MembersIcon = (props: any) => <Icon component={membersSvg} {...props} />;
 
-  const listSponsors = list?.map((item: any) => (
-    <li key={item.node.id}>
-      <Avatar size={35} src={item.node.avatarUrl} />
-      <div className={styles.popup}>
-        <div className={styles.holder}>
-          <Row>
-            <Col span={6}>
-              <Avatar size={60} src={item.node.avatarUrl} alt="avatar" />
-            </Col>
-            <Col span={18}>
-              <h3 className={styles.title}>
-                {item.node.name} <span className={styles.login}> {item.node.login}</span>
-              </h3>
-              <p>{item.node.bio}</p>
-              {item.node.location && (
-                <address className={styles.location}>
-                  <span className={styles.iconHolder}>
-                    <LocationIcon style={{ fontSize: '12px', color: '#8b949e' }} />
-                  </span>
-                  {item.node.location}
-                </address>
-              )}
-            </Col>
-          </Row>
+  const listSponsors = list?.map((item: any) => {
+    const organizationsList = item.node.organizations ? item.node.organizations.edges : [];
+
+    return (
+      <li key={item.node.id}>
+        <Avatar size={35} src={item.node.avatarUrl} />
+        <div className={styles.popup}>
+          <div className={styles.holder}>
+            <Row>
+              <Col span={6}>
+                <Avatar size={60} src={item.node.avatarUrl} alt="avatar" />
+              </Col>
+              <Col span={18}>
+                <h3 className={styles.title}>
+                  {item.node.name} <span className={styles.login}> {item.node.login}</span>
+                </h3>
+                <p>{item.node.bio}</p>
+                {item.node.location && (
+                  <address className={styles.location}>
+                    <span className={styles.iconHolder}>
+                      <LocationIcon style={{ fontSize: '12px', color: '#8b949e' }} />
+                    </span>
+                    {item.node.location}
+                  </address>
+                )}
+              </Col>
+            </Row>
+          </div>
+          {organizationsList.length > 0 && (
+            <div className={styles.memberInfo}>
+              <span className={styles.iconHolder}>
+                <MembersIcon style={{ fontSize: '12px', color: '#8b949e' }} />
+              </span>
+              Member of &nbsp;
+              {organizationsList.map((org: any) => org.node.name)}
+            </div>
+          )}
         </div>
-        <div className={styles.memberInfo}>
-          <span className={styles.iconHolder}>
-            <MembersIcon style={{ fontSize: '12px', color: '#8b949e' }} />
-            {console.log('organization', item.node.organizations)}
-          </span>
-          member
-        </div>
-      </div>
-    </li>
-  ));
+      </li>
+    );
+  });
 
   return (
     <section className={styles.section}>
