@@ -50223,7 +50223,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
          * Transforms a request (what's typically passed as argument to the require function) into an unqualified path.
          * This path is called "unqualified" because it only changes the package name to the package location on the disk,
          * which means that the end result still cannot be directly accessed (for example, it doesn't try to resolve the
-         * file extension, or to resolve directories to their "index.js" content). Use the "resolveUnqualified" function
+         * file extension, or to resolve directories to their "index.ts" content). Use the "resolveUnqualified" function
          * to convert them to fully-qualified paths, or just use "resolveRequest" that do both operations in one go.
          *
          * Note that it is extremely important that the `issuer` path ends with a forward slash if the issuer is to be
@@ -50576,7 +50576,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }
         /**
          * Transforms an unqualified path into a qualified path by using the Node resolution algorithm (which automatically
-         * appends ".js" / ".json", and transforms directory accesses into "index.js").
+         * appends ".js" / ".json", and transforms directory accesses into "index.ts").
          */
 
         function resolveUnqualified(

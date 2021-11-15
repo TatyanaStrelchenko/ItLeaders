@@ -6,8 +6,7 @@ import React from 'react';
 import { useLazyLoadQuery } from 'react-relay/hooks';
 
 import { SponsorsQuery } from '../../__generated__/SponsorsQuery.graphql';
-import { ReactComponent as LocationImage } from '../../ assets/images/location.svg';
-import { ReactComponent as MemberImage } from '../../ assets/images/member.svg';
+import { LocationIcon, MemberIcon } from '../../icons';
 
 import styles from './Sponsors.module.scss';
 
@@ -53,8 +52,20 @@ const Sponsors = () => {
 
   const listSponsors = list?.map((item: any) => {
     const organizationsList = item.node.organizations ? item.node.organizations.edges : [];
-    const count = organizationsList.length;
-    const renderOrgList = organizationsList.map((org: any) => org.node.name).join(', ');
+    const renderList = (organizations: any) => {
+      const [firstOrg, secondOrg, ...restOrgs] = organizations.map((org: any) => org.node.name);
+
+      if (!secondOrg) {
+        return firstOrg;
+      }
+
+      if (restOrgs.length) {
+        return `${firstOrg}, ${secondOrg} and ${restOrgs.length} more`;
+      }
+
+      return `${firstOrg} and ${secondOrg}`;
+    };
+    // console.log('renderOrgList', renderOrgList);
 
     return (
       <li key={item.node.id}>
@@ -76,7 +87,7 @@ const Sponsors = () => {
                 {item.node.location && (
                   <address className={styles.location}>
                     <span className={styles.iconHolder}>
-                      <LocationImage color="#8b949e" fontSize="12px" />
+                      <LocationIcon color="#8b949e" fontSize="12px" />
                     </span>
                     {item.node.location}
                   </address>
@@ -86,10 +97,9 @@ const Sponsors = () => {
           </div>
           {organizationsList.length > 0 && (
             <div className={styles.memberInfo}>
-              <MemberImage color="#8b949e" fontSize="12px" />
+              <MemberIcon color="#8b949e" fontSize="12px" />
               Member of&nbsp;
-              {count < 3 ? renderOrgList : renderOrgList.slice(2, count)}
-              {count > 1 && <span className={styles.infoText}>&nbsp;and&nbsp;{count} more</span>}
+              {renderList(organizationsList)}
             </div>
           )}
         </div>
