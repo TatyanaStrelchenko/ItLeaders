@@ -17,6 +17,7 @@ export type SponsorsQueryResponse = {
                     readonly bio?: string | null;
                     readonly login?: string;
                     readonly location?: string | null;
+                    readonly isEmployee?: boolean;
                     readonly organizations?: {
                         readonly edges: ReadonlyArray<{
                             readonly node: {
@@ -51,6 +52,7 @@ query SponsorsQuery {
             bio
             login
             location
+            isEmployee
             organizations(first: 10) {
               edges {
                 node {
@@ -136,7 +138,14 @@ v8 = {
   "name": "location",
   "storageKey": null
 },
-v9 = [
+v9 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "isEmployee",
+  "storageKey": null
+},
+v10 = [
   {
     "kind": "Literal",
     "name": "first",
@@ -192,9 +201,10 @@ return {
                           (v6/*: any*/),
                           (v7/*: any*/),
                           (v8/*: any*/),
+                          (v9/*: any*/),
                           {
                             "alias": null,
-                            "args": (v9/*: any*/),
+                            "args": (v10/*: any*/),
                             "concreteType": "OrganizationConnection",
                             "kind": "LinkedField",
                             "name": "organizations",
@@ -301,9 +311,10 @@ return {
                           (v6/*: any*/),
                           (v7/*: any*/),
                           (v8/*: any*/),
+                          (v9/*: any*/),
                           {
                             "alias": null,
-                            "args": (v9/*: any*/),
+                            "args": (v10/*: any*/),
                             "concreteType": "OrganizationConnection",
                             "kind": "LinkedField",
                             "name": "organizations",
@@ -364,14 +375,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "81bb750b2f873d8f7a7bfc062eb382d5",
+    "cacheID": "6600349e66a1a370edadd7456ba547a9",
     "id": null,
     "metadata": {},
     "name": "SponsorsQuery",
     "operationKind": "query",
-    "text": "query SponsorsQuery {\n  user(login: \"M0nica\") {\n    sponsors(first: 13) {\n      totalCount\n      edges {\n        node {\n          __typename\n          ... on User {\n            id\n            avatarUrl\n            name\n            bio\n            login\n            location\n            organizations(first: 10) {\n              edges {\n                node {\n                  name\n                  id\n                }\n              }\n            }\n          }\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n"
+    "text": "query SponsorsQuery {\n  user(login: \"M0nica\") {\n    sponsors(first: 13) {\n      totalCount\n      edges {\n        node {\n          __typename\n          ... on User {\n            id\n            avatarUrl\n            name\n            bio\n            login\n            location\n            isEmployee\n            organizations(first: 10) {\n              edges {\n                node {\n                  name\n                  id\n                }\n              }\n            }\n          }\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'bf1bf07068c979cdfa2bc5eba2ad4afb';
+(node as any).hash = 'e71985c3735bd943867d27842ee94614';
 export default node;

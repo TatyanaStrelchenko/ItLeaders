@@ -25,6 +25,7 @@ const RepositoryNameQuery = graphql`
               bio
               login
               location
+              isEmployee
               organizations(first: 10) {
                 edges {
                   node {
@@ -62,7 +63,10 @@ const Sponsors = () => {
           <div className={styles.holder}>
             <Row>
               <Col span={6}>
-                <Avatar size={60} src={item.node.avatarUrl} alt="avatar" />
+                <div className={styles.avatarHolder}>
+                  <Avatar size={60} src={item.node.avatarUrl} alt="avatar" />
+                  {item.node.isEmployee && <span className={styles.staffBlock}>Staff</span>}
+                </div>
               </Col>
               <Col span={18}>
                 <h3 className={styles.title}>
