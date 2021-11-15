@@ -113,6 +113,8 @@ const Sponsors = () => {
 
   const listSponsors = list?.map((item: any) => {
     const organizationsList = item.node.organizations ? item.node.organizations.edges : [];
+    const count = organizationsList.length;
+    const renderOrgList = organizationsList.map((org: any) => org.node.name).join(', ');
 
     return (
       <li key={item.node.id}>
@@ -144,8 +146,9 @@ const Sponsors = () => {
               <span className={styles.iconHolder}>
                 <MembersIcon style={{ fontSize: '12px', color: '#8b949e' }} />
               </span>
-              Member of &nbsp;
-              {organizationsList.map((org: any) => org.node.name)}
+              Member of&nbsp;
+              {count < 3 ? renderOrgList : renderOrgList.slice(2, count)}
+              {count > 1 && <span className={styles.infoText}>&nbsp;and&nbsp;{count} more</span>}
             </div>
           )}
         </div>
