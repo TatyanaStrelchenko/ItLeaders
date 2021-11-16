@@ -18,6 +18,7 @@ export type SponsorsQueryResponse = {
                     readonly login?: string;
                     readonly location?: string | null;
                     readonly isEmployee?: boolean;
+                    readonly isDeveloperProgramMember?: boolean;
                     readonly organizations?: {
                         readonly edges: ReadonlyArray<{
                             readonly node: {
@@ -40,7 +41,7 @@ export type SponsorsQuery = {
 /*
 query SponsorsQuery {
   user(login: "M0nica") {
-    sponsors(first: 13) {
+    sponsors(first: 14) {
       totalCount
       edges {
         node {
@@ -53,6 +54,7 @@ query SponsorsQuery {
             login
             location
             isEmployee
+            isDeveloperProgramMember
             organizations(first: 10) {
               edges {
                 node {
@@ -86,7 +88,7 @@ v1 = [
   {
     "kind": "Literal",
     "name": "first",
-    "value": 13
+    "value": 14
   }
 ],
 v2 = {
@@ -145,7 +147,14 @@ v9 = {
   "name": "isEmployee",
   "storageKey": null
 },
-v10 = [
+v10 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "isDeveloperProgramMember",
+  "storageKey": null
+},
+v11 = [
   {
     "kind": "Literal",
     "name": "first",
@@ -202,9 +211,10 @@ return {
                           (v7/*: any*/),
                           (v8/*: any*/),
                           (v9/*: any*/),
+                          (v10/*: any*/),
                           {
                             "alias": null,
-                            "args": (v10/*: any*/),
+                            "args": (v11/*: any*/),
                             "concreteType": "OrganizationConnection",
                             "kind": "LinkedField",
                             "name": "organizations",
@@ -247,7 +257,7 @@ return {
                 "storageKey": null
               }
             ],
-            "storageKey": "sponsors(first:13)"
+            "storageKey": "sponsors(first:14)"
           }
         ],
         "storageKey": "user(login:\"M0nica\")"
@@ -312,9 +322,10 @@ return {
                           (v7/*: any*/),
                           (v8/*: any*/),
                           (v9/*: any*/),
+                          (v10/*: any*/),
                           {
                             "alias": null,
-                            "args": (v10/*: any*/),
+                            "args": (v11/*: any*/),
                             "concreteType": "OrganizationConnection",
                             "kind": "LinkedField",
                             "name": "organizations",
@@ -366,7 +377,7 @@ return {
                 "storageKey": null
               }
             ],
-            "storageKey": "sponsors(first:13)"
+            "storageKey": "sponsors(first:14)"
           },
           (v3/*: any*/)
         ],
@@ -375,14 +386,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "6600349e66a1a370edadd7456ba547a9",
+    "cacheID": "6ed1d018576570c053598cfd91b471b8",
     "id": null,
     "metadata": {},
     "name": "SponsorsQuery",
     "operationKind": "query",
-    "text": "query SponsorsQuery {\n  user(login: \"M0nica\") {\n    sponsors(first: 13) {\n      totalCount\n      edges {\n        node {\n          __typename\n          ... on User {\n            id\n            avatarUrl\n            name\n            bio\n            login\n            location\n            isEmployee\n            organizations(first: 10) {\n              edges {\n                node {\n                  name\n                  id\n                }\n              }\n            }\n          }\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n"
+    "text": "query SponsorsQuery {\n  user(login: \"M0nica\") {\n    sponsors(first: 14) {\n      totalCount\n      edges {\n        node {\n          __typename\n          ... on User {\n            id\n            avatarUrl\n            name\n            bio\n            login\n            location\n            isEmployee\n            isDeveloperProgramMember\n            organizations(first: 10) {\n              edges {\n                node {\n                  name\n                  id\n                }\n              }\n            }\n          }\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'e71985c3735bd943867d27842ee94614';
+(node as any).hash = '6735198a1472376ffe297d6322bc02be';
 export default node;
